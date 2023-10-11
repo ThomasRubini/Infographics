@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "pid"
+version = "0.1"
+description = ""
+authors = ["Thomas Rubini", "AudricV", "Globostofo"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+numpy = "^1.26.0"
+
+[project.urls]
+repository = "https://github.com/ThomasRubini/Infographics"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

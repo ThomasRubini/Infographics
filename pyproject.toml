@@ -8,6 +8,7 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = ">=3.10,<3.13"
 numpy = "^1.26.0"
+matplotlib = "^3.8.0"
 
 [project.urls]
 repository = "https://github.com/ThomasRubini/Infographics"

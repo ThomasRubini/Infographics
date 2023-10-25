@@ -13,7 +13,7 @@ class MatrixMovementBuilder:
 
     def translate(self, x: float, y: float):
         """
-
+        Moves **away** from the origin
         """
         self.__matrix @= np.array([
             [1.0, 0.0, x],

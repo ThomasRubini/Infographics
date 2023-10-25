@@ -7,13 +7,12 @@ from pid.polygon import Polygon
 
 def mpl_display(polygons: List[Polygon], interval = 5):
     """
-    This function uses matplotlib to display the given list of polygon
-
-    Arguments:
-        polygons: list of polygons that will be drawns
-        interval: delay between each frame
+    This function uses matplotlib to display the given list of polygon.
 
     **Warning**: This function will enter in an infinite loop to display the items, and will never return
+
+    :param polygons: list of polygons that will be drawns
+    :param interval: delay between each frame
     """
 
     fig, ax1 = plt.subplots()

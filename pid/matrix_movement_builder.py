@@ -47,7 +47,32 @@ class MatrixMovementBuilder:
         self.translate(x, y)
         self.rotate_origin(angle)
         self.translate(-x, -y)
+    
+    def homothety_origin(self, scale: int):
+        """
+        Add a homothety based on the origin and from the given scale.
 
+        :param scale: the new scale
+        """
+        self.__matrix @= np.array([
+            [scale,   0.0, 0.0],
+            [  0.0, scale, 0.0],
+            [  0.0,   0.0, 1.0]
+        ]).astype(float)
+        
+    def homothety(self, scale: int, x: int, y: int):
+        """
+        Add a homothety based on the given point and from the given scale.
+
+        Args:
+            scale (int): the new scale
+            x (int): the point's x coordinate
+            y (int): the point's y coordinate
+        """
+        self.translate(x, y)
+        self.homothety_origin(scale)
+        self.translate(-x, -y)
+    
     def get_ref(self) -> np.ndarray:
         """
         Return the matrix with the movements applied before.

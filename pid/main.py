@@ -8,14 +8,17 @@ from pid.polygon import Polygon
 from pid.mpl_display import mpl_display
 
 builder = MatrixMovementBuilder()
-# builder.translate(0.01, 0.01)
+builder.translate(0.01, 0.01)
+transition_matrix = builder.get_matrix()
+
+builder = MatrixMovementBuilder()
 builder.rotate(0.01, 3, -4)
-m = builder.get_matrix()
+rotation_matrix = builder.get_matrix()
 
 polygon = Polygon(
     np.array([1, 1, -1, -1]),
     np.array([1, -1, -1, 1]),
-    m
+    [(transition_matrix, 100), (rotation_matrix, None)]
 )
 
 mpl_display([polygon])

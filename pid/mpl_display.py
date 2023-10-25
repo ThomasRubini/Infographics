@@ -2,7 +2,8 @@ from typing import List
 
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
-from polygon import Polygon
+
+from pid.polygon import Polygon
 
 def mpl_display(polygons: List[Polygon], interval = 5):
     """

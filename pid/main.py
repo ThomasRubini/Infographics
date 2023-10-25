@@ -1,12 +1,11 @@
 import signal
 signal.signal(signal.SIGINT, signal.SIG_DFL)
 
-
 import numpy as np
 
-from matrix_movement_builder import MatrixMovementBuilder
-from polygon import Polygon
-from mpl_display import mpl_display
+from pid.matrix_movement_builder import MatrixMovementBuilder
+from pid.polygon import Polygon
+from pid.mpl_display import mpl_display
 
 builder = MatrixMovementBuilder()
 # builder.translate(0.01, 0.01)

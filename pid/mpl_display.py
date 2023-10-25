@@ -6,7 +6,7 @@ from polygon import Polygon
 
 import numpy as np
 
-def mpl_display(polygons: List[Polygon]):
+def mpl_display(polygons: List[Polygon], interval = 5):
     fig, ax1 = plt.subplots()
 
     ax1.set_aspect('equal', adjustable='box')
@@ -23,9 +23,6 @@ def mpl_display(polygons: List[Polygon]):
 
     # nombre d'itérations
     frames = np.linspace(0, 1, 10000)
-
-    # attente entre chaque itération
-    interval = 0.01
     
     # We need that variable to stay in scope while displaying,
     # otherwise FuncAnimation will be collected by the garbage collector

@@ -14,7 +14,7 @@ def mpl_display(polygons: List[Polygon]):
     ax1.set_xlim(-10, 10)
     ax1.set_ylim(-10, 10)
 
-    def update(frame):
+    def update(_):
         figures = []
         for polygon in polygons:
             polygon.update()
@@ -26,6 +26,9 @@ def mpl_display(polygons: List[Polygon]):
 
     # attente entre chaque itération
     interval = 0.01
+    
+    # We need that variable to stay in scope while displaying,
+    # else FuncAnimation will be collected by the garbage collector
     anni = FuncAnimation(fig, update, frames=frames, interval=interval, blit=True)
 
     plt.show()

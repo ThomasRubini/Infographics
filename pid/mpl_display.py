@@ -7,6 +7,16 @@ from polygon import Polygon
 import numpy as np
 
 def mpl_display(polygons: List[Polygon], interval = 5):
+    """
+    This function uses matplotlib to display the given list of polygon
+
+    Arguments:
+        polygons: list of polygons that will be drawns
+        interval: delay between each frame
+
+    **Warning**: This function will enter in an infinite loop to display the items, and will never return
+    """
+
     fig, ax1 = plt.subplots()
 
     ax1.set_aspect('equal', adjustable='box')

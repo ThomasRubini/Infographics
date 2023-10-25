@@ -45,11 +45,3 @@ class Polygon:
     
     def __repr__(self) -> str:
         return f"Polygon(size={self.n}, points=[{', '.join(map(str, zip(self.x, self.y)))}])"
-    
-if __name__ == "__main__":
-    polygon = Polygon(
-        np.array([-0.1, -0.1, 0.1,  0.1]),
-        np.array([-0.1,  0.1, 0.1, -0.1]),
-        np.array([[1, 0, 1], [0, 1, 1], [0, 0, 1]])
-    )
-    print(polygon)

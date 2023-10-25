@@ -4,8 +4,6 @@ import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 from polygon import Polygon
 
-import numpy as np
-
 def mpl_display(polygons: List[Polygon], interval = 5):
     """
     This function uses matplotlib to display the given list of polygon
@@ -30,12 +28,9 @@ def mpl_display(polygons: List[Polygon], interval = 5):
             polygon.update()
             figures.append(*ax1.fill(polygon.x, polygon.y, color="blue"))
         return figures
-
-    # nombre d'itérations
-    frames = np.linspace(0, 1, 10000)
     
     # We need that variable to stay in scope while displaying,
     # otherwise FuncAnimation will be collected by the garbage collector
-    anni = FuncAnimation(fig, update_figs, frames=frames, interval=interval, blit=True)
+    anni = FuncAnimation(fig, update_figs, frames=None, interval=interval, blit=True, cache_frame_data=False)
 
     plt.show()

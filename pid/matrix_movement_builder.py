@@ -48,7 +48,7 @@ class MatrixMovementBuilder:
         self.rotate_origin(angle)
         self.translate(-x, -y)
 
-    def get_matrix(self) -> np.ndarray:
+    def get_ref(self) -> np.ndarray:
         """
         Return the matrix with the movements applied before.
 

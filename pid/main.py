@@ -9,11 +9,11 @@ from pid.mpl_display import mpl_display
 
 builder = MatrixMovementBuilder()
 builder.translate(0.01, 0.01)
-transition_matrix = builder.get_matrix()
+transition_matrix = builder.get_ref()
 
 builder = MatrixMovementBuilder()
 builder.rotate(0.01, 3, -4)
-rotation_matrix = builder.get_matrix()
+rotation_matrix = builder.get_ref()
 
 polygon = Polygon(
     np.array([1, 1, -1, -1]),

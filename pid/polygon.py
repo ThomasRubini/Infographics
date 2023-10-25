@@ -11,12 +11,13 @@ class Polygon:
     counter: decreasing counter of frames that are need to be spent with the current matrix
     """
 
-    def __init__(self, x: np.ndarray, y: np.ndarray, matrixes: list[tuple[np.ndarray, int]]):
+    def __init__(self, x: np.ndarray, y: np.ndarray, matrixes: list[tuple[np.ndarray, int]], color: str="blue"):
         self.n = len(x)
         assert len(y) == self.n
         self.x = x.astype(float)
         self.y = y.astype(float)
         self.matrixes = matrixes
+        self.color = color
 
         self.__pop_matrix()
     

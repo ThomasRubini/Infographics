@@ -24,7 +24,7 @@ def mpl_display(polygons: list[Polygon], interval = 5):
         figures = []
         for polygon in polygons:
             polygon.update()
-            figures.append(*ax1.fill(polygon.x, polygon.y, color="blue"))
+            figures.append(*ax1.fill(polygon.x, polygon.y, color=polygon.color))
         return figures
     
     # We need that variable to stay in scope while displaying,

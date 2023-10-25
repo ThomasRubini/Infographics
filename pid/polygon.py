@@ -13,12 +13,12 @@ class Polygon:
         assert(len(y) == self.n)
         self.x = x.astype(float)
         self.y = y.astype(float)
-        self.z = np.array([1]*self.n).astype(float)
         self.m = m.astype(float)
     
     def update(self):
         for point_i in range(self.n):
-            self.x[point_i], self.y[point_i], self.z[point_i] = self.m @ np.array([self.x[point_i], self.y[point_i], self.z[point_i]])
+            self.x[point_i], self.y[point_i], z = self.m @ np.array([self.x[point_i], self.y[point_i], 1])
+            assert z == 1
     
     def __repr__(self) -> str:
         return f"Polygon(size={self.n}, points=[{', '.join(map(str, zip(self.x, self.y)))}])"

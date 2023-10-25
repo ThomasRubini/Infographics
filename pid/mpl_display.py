@@ -1,11 +1,9 @@
-from typing import List
-
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 
 from pid.polygon import Polygon
 
-def mpl_display(polygons: List[Polygon], interval = 5):
+def mpl_display(polygons: list[Polygon], interval = 5):
     """
     This function uses matplotlib to display the given list of polygon.
 

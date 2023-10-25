@@ -36,7 +36,7 @@ class Polygon:
             self.x[point_i], self.y[point_i], z = self.current_matrix @ np.array([self.x[point_i], self.y[point_i], 1])
             assert z == 1
 
-        # Special case: a "None" counter means we don't ever change matrix ever.
+        # Special case: a "None" counter means we don't ever change matrix again.
         # Typicailly this is used for the last matrix in the list
         if self.counter != None:
             self.counter -= 1

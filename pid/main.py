@@ -2,64 +2,172 @@ import signal
 signal.signal(signal.SIGINT, signal.SIG_DFL)
 
 import numpy as np
+from math import pi
 
 from pid.matrix_movement_builder import MatrixMovementBuilder
 from pid.polygon import Polygon
 from pid.transformation import Transformation
 from pid.mpl_display import mpl_display
 
-# BACKGROUND
+def create_road():
+    idling = Transformation(MatrixMovementBuilder().get_ref(), 500)
 
-background = Polygon(
+    m = MatrixMovementBuilder()
+    m.rotate_origin(-pi/300)
+    rotation = Transformation(m.get_ref(), 300)
+
+    return Polygon(
+        np.array([-4,  4,   4,  -4]),
+        np.array([15, 15, -15, -15]),
+        idling,
+        {idling: rotation},
+        "#343434"
+    )
+
+def create_lines():
+    idling1 = Transformation(MatrixMovementBuilder().get_ref(), 500)
+
+    m = MatrixMovementBuilder()
+    m.rotate_origin(-pi/300)
+    rotation = Transformation(m.get_ref(), 300)
+
+    idling2 = Transformation(MatrixMovementBuilder().get_ref(), 20)
+
+    m = MatrixMovementBuilder()
+    m.translate(0, -0.4)
+    move_down = Transformation(m.get_ref(), 75)
+
+    m = MatrixMovementBuilder()
+    m.translate(0, 30)
+    reset = Transformation(m.get_ref(), 1)
+
+    # LINE 0 (just to render 1 more line while the road rotates)
+    line0 = Polygon(
+        np.array([-0.2, 0.2, 0.2, -0.2]),
+        np.array([  13,  13,  20,   20]),
+        idling1,
+        {idling1: rotation},
+        "#F5D551"
+    )
+
+    # LINE 1
+    line1 = Polygon(
+        np.array([-0.2, 0.2, 0.2, -0.2]),
+        np.array([ -17, -17, -10,  -10]),
+        idling1,
+        {idling1: rotation, rotation: idling2, idling2: move_down, move_down: reset, reset: move_down},
+        "#F5D551"
+    )
+
+    # LINE 2
+    m = MatrixMovementBuilder()
+    m.translate(0, -0.4)
+    move_init_l2 = Transformation(m.get_ref(), 50)
+
+    line2 = Polygon(
+        np.array([-0.2, 0.2, 0.2, -0.2]),
+        np.array([  -7,  -7,   0,    0]),
+        idling1,
+        {idling1: rotation, rotation: idling2, idling2: move_init_l2, move_init_l2: reset, reset: move_down, move_down: reset},
+        "#F5D551"
+    )
+
+    # LINE 3
+    m = MatrixMovementBuilder()
+    m.translate(0, -0.4)
+    move_init_l3 = Transformation(m.get_ref(), 25)
+
+    line3 = Polygon(
+        np.array([-0.2, 0.2, 0.2, -0.2]),
+        np.array([   3,   3,  10,   10]),
+        idling1,
+        {idling1: rotation, rotation: idling2, idling2: move_init_l3, move_init_l3: reset, reset: move_down, move_down: reset},
+        "#F5D551"
+    )
+
+    return [line0, line1, line2, line3]
+
+def create_truck():
+    idling1 = Transformation(MatrixMovementBuilder().get_ref(), 400)
+
+    m = MatrixMovementBuilder()
+    m.translate(0, -0.5)
+    appear1 = Transformation(m.get_ref(), 54)
+
+    m = MatrixMovementBuilder()
+    m.rotate_origin(pi)
+    positioning = Transformation(m.get_ref(), 1)
+
+    idling2 = Transformation(MatrixMovementBuilder().get_ref(), 700)
+
+    m = MatrixMovementBuilder()
+    m.translate(0, -0.02)
+    appear2 = Transformation(m.get_ref(), 675)
+
+    m = MatrixMovementBuilder()
+    m.translate(0.01, 0)
+    first_derivation = Transformation(m.get_ref(), 50)
+
+    m = MatrixMovementBuilder()
+    m.translate(-0.01, 0)
+    left_derivation = Transformation(m.get_ref(), 100)
+
+    m = MatrixMovementBuilder()
+    m.translate(0.01, 0)
+    right_derivation = Transformation(m.get_ref(), 100)
+
+    return [
+        Polygon(
+            np.array([-1, -3.3, -3.3, -1]),
+            np.array([17,   17,   12, 12]),
+            idling1,
+            {idling1: appear1, appear1: positioning, positioning: idling2, idling2: appear2, appear2: first_derivation,
+            first_derivation: left_derivation, left_derivation: right_derivation, right_derivation: left_derivation},
+            "#AAA"
+        ),
+        Polygon(
+            np.array([-3.3, -1, -1.3,   -3]),
+            np.array([  12, 12, 11.7, 11.7]),
+            idling1,
+            {idling1: appear1, appear1: positioning, positioning: idling2, idling2: appear2, appear2: first_derivation,
+            first_derivation: left_derivation, left_derivation: right_derivation, right_derivation: left_derivation},
+            "#777"
+        ),
+        Polygon(
+            np.array([-2.9, -1.4, -1.5, -2.8]),
+            np.array([11.9, 11.9,   10,   10]),
+            idling1,
+            {idling1: appear1, appear1: positioning, positioning: idling2, idling2: appear2, appear2: first_derivation,
+            first_derivation: left_derivation, left_derivation: right_derivation, right_derivation: left_derivation},
+            "#900"
+        ),
+        Polygon(
+            np.array([-2.8, -1.5, -1.7, -2.6]),
+            np.array([11.3, 11.3, 11.2, 11.2]),
+            idling1,
+            {idling1: appear1, appear1: positioning, positioning: idling2, idling2: appear2, appear2: first_derivation,
+            first_derivation: left_derivation, left_derivation: right_derivation, right_derivation: left_derivation},
+            "#0AF"
+        )
+    ]
+
+elements = []
+
+# BACKGROUND
+elements.append(Polygon(
     np.array([-10, 10,  10, -10]),
     np.array([ 10, 10, -10, -10]),
     None, {}, "#FFAE42"
-)
+))
 
 # ROAD
+elements.append(create_road())
 
-road = Polygon(
-    np.array([-4,  4,   4,  -4]),
-    np.array([10, 10, -10, -10]),
-    None, [], "#343434"
-)
+# LINES
+elements += create_lines()
 
-# LINE 1
-
-m = MatrixMovementBuilder()
-m.translate(0, -0.1)
-move_down = Transformation(m.get_ref(), 280)
-
-m = MatrixMovementBuilder()
-m.translate(0, 28)
-reset = Transformation(m.get_ref(), 1)
-
-line1 = Polygon(
-    np.array([-0.2, 0.2, 0.2, -0.2]),
-    np.array([  14,  14,  10,   10]),
-    move_down,
-    {move_down: reset, reset: move_down},
-    "#F5D571"
-)
-
-# LINE 2
-
-m = MatrixMovementBuilder()
-m.translate(0, -0.1)
-move_down = Transformation(m.get_ref(), 280)
-
-m = MatrixMovementBuilder()
-m.translate(0, 28)
-reset = Transformation(m.get_ref(), 1)
-
-line1 = Polygon(
-    np.array([-0.2, 0.2, 0.2, -0.2]),
-    np.array([  14,  14,  10,   10]),
-    move_down,
-    {move_down: reset, reset: move_down},
-    "#F5D571"
-)
+# TRUCK
+elements += create_truck()
 
 # DISPLAY
-
-mpl_display([background, road, line1])
+mpl_display(elements)

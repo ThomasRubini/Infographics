@@ -5,20 +5,61 @@ import numpy as np
 
 from pid.matrix_movement_builder import MatrixMovementBuilder
 from pid.polygon import Polygon
+from pid.transformation import Transformation
 from pid.mpl_display import mpl_display
 
-builder = MatrixMovementBuilder()
-builder.translate(0.01, 0.01)
-transition_matrix = builder.get_ref()
+# BACKGROUND
 
-builder = MatrixMovementBuilder()
-builder.rotate(0.01, 3, -4)
-rotation_matrix = builder.get_ref()
-
-polygon = Polygon(
-    np.array([1, 1, -1, -1]),
-    np.array([1, -1, -1, 1]),
-    [(transition_matrix, 100), (rotation_matrix, None)]
+background = Polygon(
+    np.array([-10, 10,  10, -10]),
+    np.array([ 10, 10, -10, -10]),
+    None, {}, "#FFAE42"
 )
 
-mpl_display([polygon])
+# ROAD
+
+road = Polygon(
+    np.array([-4,  4,   4,  -4]),
+    np.array([10, 10, -10, -10]),
+    None, [], "#343434"
+)
+
+# LINE 1
+
+m = MatrixMovementBuilder()
+m.translate(0, -0.1)
+move_down = Transformation(m.get_ref(), 280)
+
+m = MatrixMovementBuilder()
+m.translate(0, 28)
+reset = Transformation(m.get_ref(), 1)
+
+line1 = Polygon(
+    np.array([-0.2, 0.2, 0.2, -0.2]),
+    np.array([  14,  14,  10,   10]),
+    move_down,
+    {move_down: reset, reset: move_down},
+    "#F5D571"
+)
+
+# LINE 2
+
+m = MatrixMovementBuilder()
+m.translate(0, -0.1)
+move_down = Transformation(m.get_ref(), 280)
+
+m = MatrixMovementBuilder()
+m.translate(0, 28)
+reset = Transformation(m.get_ref(), 1)
+
+line1 = Polygon(
+    np.array([-0.2, 0.2, 0.2, -0.2]),
+    np.array([  14,  14,  10,   10]),
+    move_down,
+    {move_down: reset, reset: move_down},
+    "#F5D571"
+)
+
+# DISPLAY
+
+mpl_display([background, road, line1])

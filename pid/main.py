@@ -134,12 +134,28 @@ def create_truck():
             "#777"
         ),
         Polygon(
+            np.array([-3.2, -2.8, -3.1]),
+            np.array([11.5, 11.3, 11.3]),
+            idling1,
+            {idling1: appear1, appear1: positioning, positioning: idling2, idling2: appear2, appear2: first_derivation,
+            first_derivation: left_derivation, left_derivation: right_derivation, right_derivation: left_derivation},
+            "#700"
+        ),
+        Polygon(
+            np.array([-1.1, -1.5, -1.2]),
+            np.array([11.5, 11.3, 11.3]),
+            idling1,
+            {idling1: appear1, appear1: positioning, positioning: idling2, idling2: appear2, appear2: first_derivation,
+            first_derivation: left_derivation, left_derivation: right_derivation, right_derivation: left_derivation},
+            "#700"
+        ),
+        Polygon(
             np.array([-2.9, -1.4, -1.5, -2.8]),
             np.array([11.9, 11.9,   10,   10]),
             idling1,
             {idling1: appear1, appear1: positioning, positioning: idling2, idling2: appear2, appear2: first_derivation,
             first_derivation: left_derivation, left_derivation: right_derivation, right_derivation: left_derivation},
-            "#900"
+            "#B00"
         ),
         Polygon(
             np.array([-2.8, -1.5, -1.7, -2.6]),
@@ -148,6 +164,38 @@ def create_truck():
             {idling1: appear1, appear1: positioning, positioning: idling2, idling2: appear2, appear2: first_derivation,
             first_derivation: left_derivation, left_derivation: right_derivation, right_derivation: left_derivation},
             "#0AF"
+        ),
+        Polygon(
+            np.array([-1.2, -3.1]),
+            np.array([  16,   16]),
+            idling1,
+            {idling1: appear1, appear1: positioning, positioning: idling2, idling2: appear2, appear2: first_derivation,
+            first_derivation: left_derivation, left_derivation: right_derivation, right_derivation: left_derivation},
+            "#555"
+        ),
+        Polygon(
+            np.array([-1.2, -3.1]),
+            np.array([  15,   15]),
+            idling1,
+            {idling1: appear1, appear1: positioning, positioning: idling2, idling2: appear2, appear2: first_derivation,
+            first_derivation: left_derivation, left_derivation: right_derivation, right_derivation: left_derivation},
+            "#555"
+        ),
+        Polygon(
+            np.array([-1.2, -3.1]),
+            np.array([  14,   14]),
+            idling1,
+            {idling1: appear1, appear1: positioning, positioning: idling2, idling2: appear2, appear2: first_derivation,
+            first_derivation: left_derivation, left_derivation: right_derivation, right_derivation: left_derivation},
+            "#555"
+        ),
+        Polygon(
+            np.array([-1.2, -3.1]),
+            np.array([  13,   13]),
+            idling1,
+            {idling1: appear1, appear1: positioning, positioning: idling2, idling2: appear2, appear2: first_derivation,
+            first_derivation: left_derivation, left_derivation: right_derivation, right_derivation: left_derivation},
+            "#555"
         )
     ]
 

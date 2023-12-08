@@ -199,6 +199,37 @@ def create_truck():
         )
     ]
 
+def create_cactus():
+    idling1 = Transformation(MatrixMovementBuilder().get_ref(), 500)
+    
+    m = MatrixMovementBuilder()
+    m.translate(15, 0)
+    rotation = Transformation(m.get_ref(), 1)
+    
+    idling2 = Transformation(MatrixMovementBuilder().get_ref(), 320)
+    
+    m = MatrixMovementBuilder()
+    m.translate(0, -0.4)
+    move_down_init = Transformation(m.get_ref(), 40)
+    move_down1 = Transformation(m.get_ref(), 75)
+    move_down2 = Transformation(m.get_ref(), 75)
+
+    m = MatrixMovementBuilder()
+    m.translate(-15, 30)
+    reset1 = Transformation(m.get_ref(), 1)
+
+    m = MatrixMovementBuilder()
+    m.translate(15, 30)
+    reset2 = Transformation(m.get_ref(), 1)
+
+    return Polygon(
+        np.array([-8, -7,   -7, -6, -6, -6.3, -6.6, -6.6,  -7, -7, -7.5, -8,  -8, -8.4, -8.4, -8.7, -9,  -9,  -8]),
+        np.array([-2, -2, -0.5,  0,  2,  2.3,    2,  0.6, 0.4,  4,  4.5,  4, 1.8,    2,    3,  3.3,  3, 1.4, 0.9]),
+        idling1,
+        {idling1: rotation, rotation: idling2, idling2: move_down_init, move_down_init: reset1, reset1: move_down1, move_down1: reset2, reset2: move_down2, move_down2: reset1},
+        "#382"
+    )
+
 elements = []
 
 # BACKGROUND
@@ -216,6 +247,9 @@ elements += create_lines()
 
 # TRUCK
 elements += create_truck()
+
+# CACTUS
+elements.append(create_cactus())
 
 # DISPLAY
 mpl_display(elements)

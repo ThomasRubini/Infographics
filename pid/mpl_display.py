@@ -25,7 +25,11 @@ def mpl_display(scenes: list[list[Polygon, int]], interval = 5):
         figures = []
         for polygon in scenes[0][0]:
             polygon.update()
-            figures.append(*ax1.fill(polygon.x, polygon.y, color=polygon.color))
+            if isinstance(polygon, Polygon):
+                figures.append(*ax1.fill(polygon.x, polygon.y, color=polygon.color))
+            else:
+                figures.append(polygon.ellipse)
+                ax1.add_artist(polygon.ellipse)
         scenes[0][1] -= 1
         if scenes[0][1] == 0:
             scenes.pop(0)

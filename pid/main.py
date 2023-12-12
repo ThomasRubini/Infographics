@@ -6,6 +6,7 @@ from math import pi
 
 from pid.matrix_movement_builder import MatrixMovementBuilder
 from pid.polygon import Polygon
+from pid.ellipse import Ellipse
 from pid.transformation import Transformation
 from pid.mpl_display import mpl_display
 
@@ -354,6 +355,11 @@ scene2.append(Polygon(
     np.array([-10, 10, 10, -10]),
     np.array([ 10, 10,  1,   1]),
     None, {}, "#2AE"
+))
+
+# SUN
+scene2.append(Ellipse(
+    -7, 7, 3, 3, None, {}, "#FF5"
 ))
 
 # ROAD

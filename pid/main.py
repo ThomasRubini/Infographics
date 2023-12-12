@@ -302,6 +302,21 @@ def create_lines2():
 def create_truck2():
     
     return [
+        Ellipse(
+            0.7, -3.3, 0.6, 1.4,
+            None, {},
+            "#111"
+        ),
+        Ellipse(
+            2.3, -1.8, 0.4, 0.9,
+            None, {},
+            "#111"
+        ),
+        Ellipse(
+            -4.8, -5.5, 0.8, 1.7,
+            None, {},
+            "#111"
+        ),
         Polygon(
             np.array([0, 2.5,  2.5,  0]),
             np.array([1, 0.6, -1.5, -4]),
@@ -361,7 +376,12 @@ def create_truck2():
             np.array([  -4,   -4]),
             None, {},
             "#333"
-        )
+        ),
+        Ellipse(
+            -1.8, -5.5, 0.8, 1.7,
+            None, {},
+            "#111"
+        ),
     ]
 
 
@@ -421,5 +441,5 @@ scene2.append(Polygon(
 scene2 += create_truck2()
 
 # DISPLAY
-# mpl_display([[scene1, 2500], [scene2, 200]])
-mpl_display([[scene2, -1]])
+mpl_display([[scene1, 2500], [scene2, -1]])
+# mpl_display([[scene2, -1]])

@@ -231,6 +231,53 @@ def create_cactus():
         "#382"
     )
 
+def create_astral_bodies():
+    idle1 = Transformation(MatrixMovementBuilder().get_ref(), 799)
+    idle2 = Transformation(MatrixMovementBuilder().get_ref(), 799)
+
+    m = MatrixMovementBuilder()
+    m.translate(0, -10)
+    move_down = Transformation(m.get_ref(), 1)
+
+    m = MatrixMovementBuilder()
+    m.translate(0, 10)
+    move_up = Transformation(m.get_ref(), 1)
+
+    m = MatrixMovementBuilder()
+    m.rotate(pi/800, 0, 1)
+
+    m2 = MatrixMovementBuilder()
+    m2.rotate(pi/800, 0.5, 1)
+
+    return [
+        Polygon(
+            np.array([-10, 10, 10, -10]),
+            np.array([ 10, 10,  1,   1]),
+            None, {}, "#2AE"
+        ),
+        Polygon(
+            np.array([-10, 10, 10, -10]),
+            np.array([ 20, 20, 11,  11]),
+            idle1, {idle1: move_down, move_down: idle2, idle2: move_up, move_up: idle1},
+            "#041A40"
+        ),
+        Ellipse(
+            6, 1, 3, 3,
+            Transformation(m.get_ref()), {},
+            "#FF5"
+        ),
+        Ellipse(
+            -6, 1, 3, 3,
+            Transformation(m.get_ref()), {},
+            "#FFA"
+        ),
+        Ellipse(
+            -5.5, 1, 2.2, 2.2,
+            Transformation(m2.get_ref()), {},
+            "#041A40"
+        )
+    ]
+
 def create_lines2():
 
     m = MatrixMovementBuilder()
@@ -343,23 +390,14 @@ scene1.append(create_cactus())
 # SCENE 2
 scene2 = []
 
+# ASTRAL BODIES (SKY, SUN AND MOON)
+scene2 += create_astral_bodies()
+
 # GROUND
 scene2.append(Polygon(
     np.array([-10, 10,  10, -10]),
     np.array([  0,  0, -10, -10]),
     None, {}, "#FFAE42"
-))
-
-# SKY
-scene2.append(Polygon(
-    np.array([-10, 10, 10, -10]),
-    np.array([ 10, 10,  1,   1]),
-    None, {}, "#2AE"
-))
-
-# SUN
-scene2.append(Ellipse(
-    -7, 7, 3, 3, None, {}, "#FF5"
 ))
 
 # ROAD

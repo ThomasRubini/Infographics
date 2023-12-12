@@ -230,26 +230,166 @@ def create_cactus():
         "#382"
     )
 
-elements = []
+def create_lines2():
+
+    m = MatrixMovementBuilder()
+    m.homothety(0.95, 5, 0.625)
+    move = Transformation(m.get_ref(), 100)
+
+    m = MatrixMovementBuilder()
+    m.homothety(169, 5, 0.625)
+    reset = Transformation(m.get_ref(), 1)
+
+    # LINE 1
+    line1 = Polygon(
+        np.array([-3.3, -2.7,  -4.7, -6.6]),
+        np.array([ -10,  -10, -15,  -15]),
+        move,
+        {move: reset, reset: move},
+        "#F5D551"
+    )
+
+    return [line1]
+
+def create_truck2():
+    
+    return [
+        Polygon(
+            np.array([0, 2.5,  2.5,  0]),
+            np.array([1, 0.6, -1.5, -4]),
+            None, {},
+            "#AAA"
+        ),
+        Polygon(
+            np.array([-4, 0, 0, -4]),
+            np.array([ 1, 1, -4, -4]),
+            None, {},
+            "#777"
+        ),
+        Polygon(
+            np.array([-4.5, -3.8, -0.2, -0.2, -1.3, -4.5]),
+            np.array([-0.3,  0.8,  0.8,   -4,   -5,   -5]),
+            None, {},
+            "#700"
+        ),
+        # Polygon(
+        #     np.array([-1.1, -1.5, -1.2]),
+        #     np.array([11.5, 11.3, 11.3]),
+        #     idling1,
+        #     {idling1: appear1, appear1: positioning, positioning: idling2, idling2: appear2, appear2: first_derivation,
+        #     first_derivation: left_derivation, left_derivation: right_derivation, right_derivation: left_derivation},
+        #     "#700"
+        # ),
+        # Polygon(
+        #     np.array([-2.9, -1.4, -1.5, -2.8]),
+        #     np.array([11.9, 11.9,   10,   10]),
+        #     idling1,
+        #     {idling1: appear1, appear1: positioning, positioning: idling2, idling2: appear2, appear2: first_derivation,
+        #     first_derivation: left_derivation, left_derivation: right_derivation, right_derivation: left_derivation},
+        #     "#B00"
+        # ),
+        # Polygon(
+        #     np.array([-2.8, -1.5, -1.7, -2.6]),
+        #     np.array([11.3, 11.3, 11.2, 11.2]),
+        #     idling1,
+        #     {idling1: appear1, appear1: positioning, positioning: idling2, idling2: appear2, appear2: first_derivation,
+        #     first_derivation: left_derivation, left_derivation: right_derivation, right_derivation: left_derivation},
+        #     "#0AF"
+        # ),
+        # Polygon(
+        #     np.array([-1.2, -3.1]),
+        #     np.array([  16,   16]),
+        #     idling1,
+        #     {idling1: appear1, appear1: positioning, positioning: idling2, idling2: appear2, appear2: first_derivation,
+        #     first_derivation: left_derivation, left_derivation: right_derivation, right_derivation: left_derivation},
+        #     "#555"
+        # ),
+        # Polygon(
+        #     np.array([-1.2, -3.1]),
+        #     np.array([  15,   15]),
+        #     idling1,
+        #     {idling1: appear1, appear1: positioning, positioning: idling2, idling2: appear2, appear2: first_derivation,
+        #     first_derivation: left_derivation, left_derivation: right_derivation, right_derivation: left_derivation},
+        #     "#555"
+        # ),
+        # Polygon(
+        #     np.array([-1.2, -3.1]),
+        #     np.array([  14,   14]),
+        #     idling1,
+        #     {idling1: appear1, appear1: positioning, positioning: idling2, idling2: appear2, appear2: first_derivation,
+        #     first_derivation: left_derivation, left_derivation: right_derivation, right_derivation: left_derivation},
+        #     "#555"
+        # ),
+        # Polygon(
+        #     np.array([-1.2, -3.1]),
+        #     np.array([  13,   13]),
+        #     idling1,
+        #     {idling1: appear1, appear1: positioning, positioning: idling2, idling2: appear2, appear2: first_derivation,
+        #     first_derivation: left_derivation, left_derivation: right_derivation, right_derivation: left_derivation},
+        #     "#555"
+        # )
+    ]
+
+
+# SCENE 1
+scene1 = []
 
 # BACKGROUND
-elements.append(Polygon(
+scene1.append(Polygon(
     np.array([-10, 10,  10, -10]),
     np.array([ 10, 10, -10, -10]),
     None, {}, "#FFAE42"
 ))
 
 # ROAD
-elements.append(create_road())
+scene1.append(create_road())
 
 # LINES
-elements += create_lines()
+scene1 += create_lines()
 
 # TRUCK
-elements += create_truck()
+scene1 += create_truck()
 
 # CACTUS
-elements.append(create_cactus())
+scene1.append(create_cactus())
+
+# SCENE 2
+scene2 = []
+
+# GROUND
+scene2.append(Polygon(
+    np.array([-10, 10,  10, -10]),
+    np.array([  0,  0, -10, -10]),
+    None, {}, "#FFAE42"
+))
+
+# SKY
+scene2.append(Polygon(
+    np.array([-10, 10, 10, -10]),
+    np.array([ 10, 10,  0,   0]),
+    None, {}, "#2AE"
+))
+
+# ROAD
+scene2.append(Polygon(
+    np.array([4, 5,   5,  -12]),
+    np.array([0, 0, -10, -10]),
+    None, {}, "#343434"
+))
+
+# LINES
+scene2 += create_lines2()
+
+# MOUNTAINS
+scene2.append(Polygon(
+    np.array([-10, -10, -9, -4, 2, 6, 13]),
+    np.array([  0,  2,  1,  3, 2, 4,  0]),
+    None, {}, "#EE7D21"
+))
+
+# TRUCK
+scene2 += create_truck2()
 
 # DISPLAY
-mpl_display(elements)
+# mpl_display([[scene1, 2500], [scene2, 200]])
+mpl_display([[scene2, -1]])

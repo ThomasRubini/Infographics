@@ -3,7 +3,7 @@ from matplotlib.animation import FuncAnimation
 
 from pid.polygon import Polygon
 
-def mpl_display(polygons: list[Polygon], interval = 5):
+def mpl_display(scenes: list[list[Polygon, int]], interval = 5):
     """
     This function uses matplotlib to display the given list of polygon.
 
@@ -21,10 +21,14 @@ def mpl_display(polygons: list[Polygon], interval = 5):
     ax1.set_ylim(-10, 10)
 
     def update_figs(_):
+        if len(scenes) == 0: return []
         figures = []
-        for polygon in polygons:
+        for polygon in scenes[0][0]:
             polygon.update()
             figures.append(*ax1.fill(polygon.x, polygon.y, color=polygon.color))
+        scenes[0][1] -= 1
+        if scenes[0][1] == 0:
+            scenes.pop(0)
         return figures
     
     # We need that variable to stay in scope while displaying,

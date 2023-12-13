@@ -282,22 +282,52 @@ def create_lines2():
 
     m = MatrixMovementBuilder()
     m.homothety(0.95, 5, 0.625)
-    move = Transformation(m.get_ref(), 100)
+    move = Transformation(m.get_ref(), 66)
+    init_l2 = Transformation(m.get_ref(), 48)
+    init_l3 = Transformation(m.get_ref(), 30)
+    init_l4 = Transformation(m.get_ref(), 12)
 
     m = MatrixMovementBuilder()
-    m.homothety(169, 5, 0.625)
+    m.homothety(29.6, 5, 0.625)
     reset = Transformation(m.get_ref(), 1)
-
+    
     # LINE 1
     line1 = Polygon(
-        np.array([-3.3, -2.7,  -4.7, -6.6]),
-        np.array([ -10,  -10, -15,  -15]),
+        np.array([ -4,  -3,  -9, -10.77]),
+        np.array([-10, -10, -18,    -18]),
         move,
         {move: reset, reset: move},
         "#F5D551"
     )
+    
+    # LINE 2
+    line2 = Polygon(
+        np.array([   1.22,    1.64, -0.88789,  -1.6239]),
+        np.array([-3.8375, -3.8375, -7.19485, -7.19485]),
+        init_l2,
+        {init_l2: reset, move: reset, reset: move},
+        "#F5D551"
+    )
+    
+    # LINE 3
+    line3 = Polygon(
+        np.array([  3.4124,   3.5888,   2.5271,    2.218]),
+        np.array([-1.24925, -1.24925, -2.65934, -2.65934]),
+        init_l3,
+        {init_l3: reset, move: reset, reset: move},
+        "#F5D551"
+    )
+    
+    # LINE 4
+    line4 = Polygon(
+        np.array([ 4.333208,  4.407296,    3.9614,   3.83155]),
+        np.array([-0.162185, -0.162185, -0.754422, -0.754422]),
+        init_l4,
+        {init_l4: reset, move: reset, reset: move},
+        "#F5D551"
+    )
 
-    return [line1]
+    return [line1, line2, line3, line4]
 
 def create_truck2():
     
@@ -441,5 +471,5 @@ scene2.append(Polygon(
 scene2 += create_truck2()
 
 # DISPLAY
-mpl_display([[scene1, 2500], [scene2, -1]])
+mpl_display([[scene1, 2000], [scene2, 4000]])
 # mpl_display([[scene2, -1]])

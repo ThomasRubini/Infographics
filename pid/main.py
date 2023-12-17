@@ -201,17 +201,11 @@ def create_truck():
     ]
 
 def create_cactus():
-    idling1 = Transformation(MatrixMovementBuilder().get_ref(), 500)
     
-    m = MatrixMovementBuilder()
-    m.translate(15, 0)
-    rotation = Transformation(m.get_ref(), 1)
-    
-    idling2 = Transformation(MatrixMovementBuilder().get_ref(), 320)
+    idling = Transformation(MatrixMovementBuilder().get_ref(), 830)
     
     m = MatrixMovementBuilder()
     m.translate(0, -0.4)
-    move_down_init = Transformation(m.get_ref(), 40)
     move_down1 = Transformation(m.get_ref(), 75)
     move_down2 = Transformation(m.get_ref(), 75)
 
@@ -224,10 +218,10 @@ def create_cactus():
     reset2 = Transformation(m.get_ref(), 1)
 
     return Polygon(
-        np.array([-8, -7,   -7, -6, -6, -6.3, -6.6, -6.6,  -7, -7, -7.5, -8,  -8, -8.4, -8.4, -8.7, -9,  -9,  -8]),
-        np.array([-2, -2, -0.5,  0,  2,  2.3,    2,  0.6, 0.4,  4,  4.5,  4, 1.8,    2,    3,  3.3,  3, 1.4, 0.9]),
-        idling1,
-        {idling1: rotation, rotation: idling2, idling2: move_down_init, move_down_init: reset1, reset1: move_down1, move_down1: reset2, reset2: move_down2, move_down2: reset1},
+        np.array([-8, -7,   -7, -6, -6, -6.3, -6.6, -6.6,   -7, -7, -7.5, -8,   -8, -8.4, -8.4, -8.7, -9,   -9,   -8]),
+        np.array([10, 10, 11.5, 12, 14, 14.3,   14, 12.6, 12.4, 16, 16.5, 16, 13.8,   14,   15, 15.3, 15, 13.4, 12.9]),
+        idling,
+        {idling: move_down1, move_down1: reset2, reset2: move_down2, move_down2: reset1, reset1: move_down1},
         "#382"
     )
 

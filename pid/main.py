@@ -278,6 +278,30 @@ def create_astral_bodies():
         )
     ]
 
+def create_cactus2():
+    m = MatrixMovementBuilder()
+    m.homothety(0.95, 5, 0.625)
+    movement1 = Transformation(m.get_ref(), 70)
+    movement2 = Transformation(m.get_ref(), 53)
+    
+    m = MatrixMovementBuilder()
+    m.translate(-24, 5)
+    m.homothety(16, 5, 0.625)
+    reset1 = Transformation(m.get_ref(), 1)
+        
+    m = MatrixMovementBuilder()
+    m.translate(54.3717, -11.3329)
+    m.homothety(34.35, 5, 0.625)
+    reset2 = Transformation(m.get_ref(), 1)
+    
+    return Polygon(
+        np.array([ 15,  19,  19,  23,  23,  21.8, 20.6,  20.6,    19, 19, 17, 15,    15, 13.4, 13.4,  12.2,  11,    11,    15]),
+        np.array([-32, -32, -26, -24, -16, -14.8,  -16, -21.6, -22.4, -8, -6, -8, -16.5,  -16,  -12, -10.8, -12, -18.4, -20.4]),
+        movement1,
+        {movement1: reset1, reset1: movement2, movement2: reset2, reset2: movement1},
+        "#382"
+    )
+
 def create_lines2():
 
     m = MatrixMovementBuilder()
@@ -466,6 +490,9 @@ scene2.append(Polygon(
     np.array([  0,  2,  1,  3, 2, 4,  0]),
     None, {}, "#EE7D21"
 ))
+
+# CACTUS
+scene2.append(create_cactus2())
 
 # TRUCK
 scene2 += create_truck2()

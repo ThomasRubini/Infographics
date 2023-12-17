@@ -11,11 +11,11 @@ from pid.transformation import Transformation
 from pid.mpl_display import mpl_display
 
 def create_road():
-    idling = Transformation(MatrixMovementBuilder().get_ref(), 500)
+    idling = Transformation(MatrixMovementBuilder().get_ref(), 300)
 
     m = MatrixMovementBuilder()
-    m.rotate_origin(-pi/300)
-    rotation = Transformation(m.get_ref(), 300)
+    m.rotate_origin(-pi/200)
+    rotation = Transformation(m.get_ref(), 200)
 
     return Polygon(
         np.array([-4,  4,   4,  -4]),
@@ -26,17 +26,17 @@ def create_road():
     )
 
 def create_lines():
-    idling1 = Transformation(MatrixMovementBuilder().get_ref(), 500)
+    idling1 = Transformation(MatrixMovementBuilder().get_ref(), 300)
 
     m = MatrixMovementBuilder()
-    m.rotate_origin(-pi/300)
-    rotation = Transformation(m.get_ref(), 300)
+    m.rotate_origin(-pi/200)
+    rotation = Transformation(m.get_ref(), 200)
 
     idling2 = Transformation(MatrixMovementBuilder().get_ref(), 20)
 
     m = MatrixMovementBuilder()
-    m.translate(0, -0.4)
-    move_down = Transformation(m.get_ref(), 75)
+    m.translate(0, -1)
+    move_down = Transformation(m.get_ref(), 30)
 
     m = MatrixMovementBuilder()
     m.translate(0, 30)
@@ -62,8 +62,8 @@ def create_lines():
 
     # LINE 2
     m = MatrixMovementBuilder()
-    m.translate(0, -0.4)
-    move_init_l2 = Transformation(m.get_ref(), 50)
+    m.translate(0, -1)
+    move_init_l2 = Transformation(m.get_ref(), 20)
 
     line2 = Polygon(
         np.array([-0.2, 0.2, 0.2, -0.2]),
@@ -75,8 +75,8 @@ def create_lines():
 
     # LINE 3
     m = MatrixMovementBuilder()
-    m.translate(0, -0.4)
-    move_init_l3 = Transformation(m.get_ref(), 25)
+    m.translate(0, -1)
+    move_init_l3 = Transformation(m.get_ref(), 10)
 
     line3 = Polygon(
         np.array([-0.2, 0.2, 0.2, -0.2]),
@@ -89,11 +89,11 @@ def create_lines():
     return [line0, line1, line2, line3]
 
 def create_truck():
-    idling1 = Transformation(MatrixMovementBuilder().get_ref(), 400)
+    idling1 = Transformation(MatrixMovementBuilder().get_ref(), 200)
 
     m = MatrixMovementBuilder()
-    m.translate(0, -0.5)
-    appear1 = Transformation(m.get_ref(), 54)
+    m.translate(0, -1)
+    appear1 = Transformation(m.get_ref(), 27)
 
     m = MatrixMovementBuilder()
     m.rotate_origin(pi)
@@ -202,12 +202,12 @@ def create_truck():
 
 def create_cactus():
     
-    idling = Transformation(MatrixMovementBuilder().get_ref(), 830)
+    idling = Transformation(MatrixMovementBuilder().get_ref(), 550)
     
     m = MatrixMovementBuilder()
-    m.translate(0, -0.4)
-    move_down1 = Transformation(m.get_ref(), 75)
-    move_down2 = Transformation(m.get_ref(), 75)
+    m.translate(0, -1)
+    move_down1 = Transformation(m.get_ref(), 30)
+    move_down2 = Transformation(m.get_ref(), 30)
 
     m = MatrixMovementBuilder()
     m.translate(-15, 30)
@@ -226,8 +226,8 @@ def create_cactus():
     )
 
 def create_astral_bodies():
-    idle1 = Transformation(MatrixMovementBuilder().get_ref(), 799)
-    idle2 = Transformation(MatrixMovementBuilder().get_ref(), 799)
+    idle1 = Transformation(MatrixMovementBuilder().get_ref(), 599)
+    idle2 = Transformation(MatrixMovementBuilder().get_ref(), 599)
 
     m = MatrixMovementBuilder()
     m.translate(0, -10)
@@ -238,10 +238,10 @@ def create_astral_bodies():
     move_up = Transformation(m.get_ref(), 1)
 
     m = MatrixMovementBuilder()
-    m.rotate(pi/800, 0, 1)
+    m.rotate(pi/600, 0, 1)
 
     m2 = MatrixMovementBuilder()
-    m2.rotate(pi/800, 0.5, 1)
+    m2.rotate(pi/600, 0.5, 1)
 
     return [
         Polygon(
@@ -500,4 +500,4 @@ scene2.append(create_cactus2())
 scene2 += create_truck2()
 
 # DISPLAY
-mpl_display([[scene1, 2300], [scene2, 3000]])
+mpl_display([[scene1, 2000], [scene2, 1700]])

@@ -349,85 +349,93 @@ def create_lines2():
 
 def create_truck2():
     
+    m = MatrixMovementBuilder()
+    m.translate(0.02, 0)
+    right_slide = Transformation(m.get_ref(), 40)
+    
+    m = MatrixMovementBuilder()
+    m.translate(-0.02, 0)
+    left_slide = Transformation(m.get_ref(), 40)
+    
     return [
         Ellipse(
             0.7, -3.3, 0.6, 1.4,
-            None, {},
+            right_slide, {left_slide: right_slide, right_slide: left_slide},
             "#111"
         ),
         Ellipse(
-            2.3, -1.8, 0.4, 0.9,
-            None, {},
+            2.2, -1.8, 0.4, 0.9,
+            right_slide, {left_slide: right_slide, right_slide: left_slide},
             "#111"
         ),
         Ellipse(
             -4.8, -5.5, 0.8, 1.7,
-            None, {},
+            right_slide, {left_slide: right_slide, right_slide: left_slide},
             "#111"
         ),
         Polygon(
             np.array([0, 2.5,  2.5,  0]),
             np.array([1, 0.6, -1.5, -4]),
-            None, {},
+            right_slide, {left_slide: right_slide, right_slide: left_slide},
             "#AAA"
         ),
         Polygon(
             np.array([-4, 0, 0, -4]),
             np.array([ 1, 1, -4, -4]),
-            None, {},
+            right_slide, {left_slide: right_slide, right_slide: left_slide},
             "#777"
         ),
         Polygon(
             np.array([-4.5, -3.8, -0.2, -0.2, -1.3, -4.5]),
             np.array([-0.3,  0.8,  0.8,   -4,   -5,   -5]),
-            None, {},
+            right_slide, {left_slide: right_slide, right_slide: left_slide},
             "#700"
         ),
         Polygon(
             np.array([-4.2, -1.5, -1.5, -4.2]),
             np.array([-0.5, -0.5, -1.7, -1.7]),
-            None, {},
+            right_slide, {left_slide: right_slide, right_slide: left_slide},
             "#058"
         ),
         Polygon(
             np.array([-0.5, -1, -1, -0.5]),
             np.array([-0.4, -0.5, -1.6, -1.4]),
-            None, {},
+            right_slide, {left_slide: right_slide, right_slide: left_slide},
             "#058"
         ),
         Polygon(
             np.array([-5.4, -4.5, -1.3, -1.3, -2.4, -5.4]),
             np.array([  -3,   -2,   -2,   -5,   -6,   -6]),
-            None, {},
+            right_slide, {left_slide: right_slide, right_slide: left_slide},
             "#B00"
         ),
         Polygon(
             np.array([-5, -3, -3, -5]),
             np.array([-5.5, -5.5, -3.5, -3.5]),
-            None, {},
+            right_slide, {left_slide: right_slide, right_slide: left_slide},
             "#777"
         ),
         Polygon(
             np.array([-4.8, -3.2]),
             np.array([  -5,   -5]),
-            None, {},
+            right_slide, {left_slide: right_slide, right_slide: left_slide},
             "#333"
         ),
         Polygon(
             np.array([-4.8, -3.2]),
             np.array([-4.5, -4.5]),
-            None, {},
+            right_slide, {left_slide: right_slide, right_slide: left_slide},
             "#333"
         ),
         Polygon(
             np.array([-4.8, -3.2]),
             np.array([  -4,   -4]),
-            None, {},
+            right_slide, {left_slide: right_slide, right_slide: left_slide},
             "#333"
         ),
         Ellipse(
             -1.8, -5.5, 0.8, 1.7,
-            None, {},
+            right_slide, {left_slide: right_slide, right_slide: left_slide},
             "#111"
         ),
     ]
@@ -492,5 +500,4 @@ scene2.append(create_cactus2())
 scene2 += create_truck2()
 
 # DISPLAY
-mpl_display([[scene1, 2000], [scene2, 4000]])
-# mpl_display([[scene2, -1]])
+mpl_display([[scene1, 2300], [scene2, 3000]])

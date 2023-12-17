@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt
-from matplotlib.animation import FuncAnimation
+import matplotlib.animation as animation
 
 from pid.polygon import Polygon
 
@@ -37,7 +37,11 @@ def mpl_display(scenes: list[list[Polygon, int]], interval = 5):
     
     # We need that variable to stay in scope while displaying,
     # otherwise FuncAnimation will be collected by the garbage collector
-    anni = FuncAnimation(fig, update_figs, frames=None, interval=interval, blit=True, cache_frame_data=False)
-
+    anni = animation.FuncAnimation(fig, update_figs, frames=sum(map(lambda scene: scene[1], scenes)), interval=interval, blit=True, cache_frame_data=False)
     plt.axis('off')
+    
+    # Uncomment this 2 lines to save the animation as mp4 format
+    # writer = animation.FFMpegWriter(fps=30)
+    # anni.save('output.mp4', writer=writer)
+    
     plt.show()

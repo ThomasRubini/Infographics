@@ -39,4 +39,5 @@ def mpl_display(scenes: list[list[Polygon, int]], interval = 5):
     # otherwise FuncAnimation will be collected by the garbage collector
     anni = FuncAnimation(fig, update_figs, frames=None, interval=interval, blit=True, cache_frame_data=False)
 
+    plt.axis('off')
     plt.show()

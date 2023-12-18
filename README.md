@@ -2,10 +2,6 @@
 
 A project around infographics using homogeneous coordinates to show how to move objects for which their points are represented by matrices.
 
-## Content made
-
-TODO
-
 ## Installation instructions
 
 You must have Python 3.10 or higher installed on your system
